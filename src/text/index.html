@@ -1,0 +1,25 @@
+---
+layout: text
+---
+
+<section class="mt-15">
+    {% set textslist = collections.text %}
+
+    {% for text in textslist | reverse %}
+        <article class="my-8">
+            <h2 class="font-bold text-3xl text-gray-900 mb-2">
+                    {% if text.data.text %}
+                        {{ text.data.text }}
+                    {% else %}
+                        Untitled
+                    {% endif %}
+                </a>
+            </h2>
+            {% if text.data.subtitle %}
+                <p class="text-lg text-gray-500 mb-3">
+                    {{ text.data.subtitle }}
+                </p>
+            {% endif %}
+        </article>
+    {% endfor %}
+</section>

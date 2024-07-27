@@ -66,3 +66,12 @@ collections:
           - { label: Name, name: name, widget: string }
           - { label: Author, name: author, widget: string }
           - { label: URL, name: url, widget: string }
+  - label: "Add Text"
+    name: "text"
+    folder: "src/text.yaml"
+    create: true
+    editor:
+      preview: false
+    fields:
+      - { label: Text, name: text, widget: string }
+      - { label: Subtitle, name: subtitle, widget: string }
