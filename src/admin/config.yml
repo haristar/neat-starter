@@ -68,7 +68,7 @@ collections:
           - { label: URL, name: url, widget: string }
   - label: "Add Text"
     name: "text"
-    folder: "src/text.yaml"
+    folder: "src/texts"
     create: true
     editor:
       preview: false
