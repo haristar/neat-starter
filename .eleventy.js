@@ -10,7 +10,7 @@ module.exports = function (eleventyConfig) {
   // Merge data instead of overriding
   eleventyConfig.setDataDeepMerge(true);
 
-  // human readable date
+  // Human readable date
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(
       "dd LLL yyyy"
@@ -24,7 +24,7 @@ module.exports = function (eleventyConfig) {
   // You may remove this if you can use JSON
   eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
 
-  // Copy Static Files to /_Site
+  // Copy Static Files to /_site
   eleventyConfig.addPassthroughCopy({
     "./src/admin/config.yml": "./admin/config.yml",
     "./node_modules/alpinejs/dist/cdn.min.js": "./static/js/alpine.js",
@@ -35,7 +35,16 @@ module.exports = function (eleventyConfig) {
   // Copy Image Folder to /_site
   eleventyConfig.addPassthroughCopy("./src/static/img");
 
-  // Copy favicon to route of /_site
+  // Copy Public Folder (where your HTML and assets are located)
+  eleventyConfig.addPassthroughCopy("./src/public");
+
+  // If you want specific folders, uncomment the lines below
+  // eleventyConfig.addPassthroughCopy("./src/public/css");
+  // eleventyConfig.addPassthroughCopy("./src/public/assets");
+  // eleventyConfig.addPassthroughCopy("./src/public/forms");
+  // eleventyConfig.addPassthroughCopy("./src/public/providers");
+
+  // Copy favicon to root of /_site
   eleventyConfig.addPassthroughCopy("./src/favicon.ico");
 
   // Minify HTML
@@ -55,10 +64,19 @@ module.exports = function (eleventyConfig) {
 
   // Let Eleventy transform HTML files as nunjucks
   // So that we can use .html instead of .njk
+  eleventyConfig.setTemplateFormats([
+    "html",
+    "njk",
+    "md", // If you have markdown files
+  ]);
+
   return {
     dir: {
-      input: "src",
+      input: "src",      // Input directory
+      output: "_site",   // Output directory
+      includes: "_includes", // Directory for includes
+      data: "_data",     // Directory for global data files
     },
-    htmlTemplateEngine: "njk",
+    htmlTemplateEngine: "njk", // Use Nunjucks for HTML templates
   };
 };
