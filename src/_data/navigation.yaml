@@ -10,3 +10,5 @@ items:
     url: "/blog"
   - text: Text
     url: "/text"
+  - text: Prac360
+    url: "/public"
