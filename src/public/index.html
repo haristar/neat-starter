@@ -112,131 +112,110 @@ layout: text
           </div>
         </section>
 
-        <section>
-            <body>
-                <section class="mt-15">
-                    {% set apilist = collections.apitag %}
-                    
-                    {% set apisArray = [] %}
-                    
-                    {% for api in apilist | reverse %}
-                        {% if api.data.api %}
-                            {% set apisArray = apisArray.concat(api.data.api) %}
-                        {% endif %}
-                        
-                        <!-- <article class="my-8">
-                            <h2 class="font-bold text-3xl text-gray-900 mb-2">
-                                {% if api.data.api %}
-                                    {{ api.data.api }}
-                                {% else %}
-                                    Untitled
-                                {% endif %}
-                            </h2>
-                        </article> -->
-                    {% endfor %}
-        
-                    <!-- Display the stored texts from the array -->
-                    <div class="mt-8">
-                        <h3 class="font-bold text-2xl">Collected APIs:</h3>
-                        <ul id="api-list">
-                            {% for api in apisArray %}
-                                <li class="text-gray-700">{{ api }}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </section>    
-            </body>
-        </section>
-        
-        <script>
-            // Convert the Nunjucks apisArray to a JavaScript array
-            const apisArray = "{{ apisArray }}";
-            
-            // Check if apisArray is an array
-            console.log('APIs Array:', apisArray);
-            console.log('Type of APIs Array:', typeof apisArray);
-        
-            const split = apisArray.split(",");
-            console.log('APIs Array:', split[0]);
-            console.log('APIs Array:', split[1]);
-        
-            for (let i = 0; i < split.length; i++) {
-                fetch(split[i])
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('manual error');
-                        }
-                        return response.json(); // Move return statement here
-                    })
-                    .then(data => {
-                        console.log(data);
-                        // displayAPIResult("hello", data);
-                        displayAPIResult(split[i], data);
-                    })
-                    .catch(error => {
-                        // Display error message if the request fails
-                        console.error('Error fetching API:', error);
-                        displayAPIError("there", error.message);
-                    });
-            }
-        
-            // Function to display only the names from the API result on the page
-            function displayAPIResult(apiUrl, data) {
-                const apiList = document.getElementById('api-list');
-        
-                // Create a new list item
-                const listItem = document.createElement('li');
-                listItem.className = 'api-result';
-        
-                // Create a title for the API result
-                const title = document.createElement('h4');
-                title.textContent = `Data from ${apiUrl}`;
-                title.className = 'api-title';
-        
-                // Create a list to display names
-                const nameList = document.createElement('ul');
-        
-                // Iterate over the results and add each name to the list
-                data.results.forEach(result => {
-                    const nameItem = document.createElement('li');
-                    nameItem.textContent = result.name;
-                    nameList.appendChild(nameItem);
-                });
-        
-                // Append the title and name list to the list item
-                listItem.appendChild(title);
-                listItem.appendChild(nameList);
-        
-                // Append the list item to the apiList
-                apiList.appendChild(listItem);
-            }
-        
-            // Function to display an error message if the API request fails
-            function displayAPIError(apiUrl, errorMessage) {
-                const apiList = document.getElementById('api-list');
-        
-                // Create a new list item for the error
-                const listItem = document.createElement('li');
-                listItem.className = 'api-error';
-        
-                // Create a title for the error
-                const title = document.createElement('h4');
-                title.textContent = `Error fetching data from ${apiUrl}`;
-                title.className = 'api-title';
-        
-                // Create a paragraph to display the error message
-                const errorText = document.createElement('p');
-                errorText.textContent = `Error: ${errorMessage}`;
-                errorText.className = 'error';
-        
-                // Append the title and error message to the list item
-                listItem.appendChild(title);
-                listItem.appendChild(errorText);
-        
-                // Append the list item to the apiList
-                apiList.appendChild(listItem);
-            }
-        </script>
+        <section class="mt-15">
+          {% set apilist = collections.apitag %}
+          {% set apisArray = [] %}
+          {% for api in apilist | reverse %}
+              {% if api.data.api %}
+                  {% set apisArray = apisArray.concat(api.data.api) %}
+              {% endif %}
+          {% endfor %}
+      
+          <div class="mt-8">
+              <h3 class="font-bold text-2xl">Collected APIs:</h3>
+              <ul id="api-list">
+                  {% for api in apisArray %}
+                      <li class="text-gray-700">{{ api }}</li>
+                  {% endfor %}
+              </ul>
+          </div>
+      </section>
+      
+      <script>
+      // Convert the Nunjucks apisArray to a JavaScript array
+      const apisArray = JSON.parse('{{ apisArray | safe }}');
+      
+      // Check if apisArray is an array
+      console.log('APIs Array:', apisArray);
+      console.log('Type of APIs Array:', typeof apisArray);
+      
+      apisArray.forEach(apiUrl => {
+          console.log('Fetching URL:', apiUrl);
+          fetch(apiUrl)
+              .then(response => {
+                  if (!response.ok) {
+                      throw new Error(`HTTP error! status: ${response.status}`);
+                  }
+                  return response.json();
+              })
+              .then(data => {
+                  console.log(data);
+                  displayAPIResult(apiUrl, data);
+              })
+              .catch(error => {
+                  console.error('Error fetching API:', error);
+                  displayAPIError(apiUrl, error.message);
+              });
+      });
+      
+      // Function to display only the names from the API result on the page
+      function displayAPIResult(apiUrl, data) {
+          const apiList = document.getElementById('api-list');
+      
+          // Create a new list item
+          const listItem = document.createElement('li');
+          listItem.className = 'api-result';
+      
+          // Create a title for the API result
+          const title = document.createElement('h4');
+          title.textContent = `Data from ${apiUrl}`;
+          title.className = 'api-title';
+      
+          // Create a list to display names
+          const nameList = document.createElement('ul');
+      
+          // Iterate over the results and add each name to the list
+          data.results.forEach(result => {
+              const nameItem = document.createElement('li');
+              nameItem.textContent = result.name;
+              nameList.appendChild(nameItem);
+          });
+      
+          // Append the title and name list to the list item
+          listItem.appendChild(title);
+          listItem.appendChild(nameList);
+      
+          // Append the list item to the apiList
+          apiList.appendChild(listItem);
+      }
+      
+      // Function to display an error message if the API request fails
+      function displayAPIError(apiUrl, errorMessage) {
+          const apiList = document.getElementById('api-list');
+      
+          // Create a new list item for the error
+          const listItem = document.createElement('li');
+          listItem.className = 'api-error';
+      
+          // Create a title for the error
+          const title = document.createElement('h4');
+          title.textContent = `Error fetching data from ${apiUrl}`;
+          title.className = 'api-title';
+      
+          // Create a paragraph to display the error message
+          const errorText = document.createElement('p');
+          errorText.textContent = `Error: ${errorMessage}`;
+          errorText.className = 'error';
+      
+          // Append the title and error message to the list item
+          listItem.appendChild(title);
+          listItem.appendChild(errorText);
+      
+          // Append the list item to the apiList
+          apiList.appendChild(listItem);
+      }
+      </script>
+
     
           <hr>
       </main><!-- End #main -->
@@ -311,43 +290,43 @@ layout: text
     </body>
     </section>
 
-
-<style>
-    /* CSS for API List */
-    .api-result {
-        margin-top: 20px;
-        padding: 15px;
-        background-color: #fafafa;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .api-error {
-        margin-top: 20px;
-        padding: 15px;
-        background-color: #ffe0e0;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .error {
-        color: red;
-        font-size: 1em;
-        margin-top: 10px;
-    }
-
-    .api-title {
-        font-size: 1.8em;
-        color: #333;
-        margin-bottom: 15px;
-    }
-
-    pre {
-        background-color: #f5f5f5;
-        border-radius: 5px;
-        padding: 10px;
-        overflow-x: auto;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-    }
-</style>
+      
+    <style>
+      .api-result {
+          margin-top: 20px;
+          padding: 15px;
+          background-color: #fafafa;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+  
+      .api-error {
+          margin-top: 20px;
+          padding: 15px;
+          background-color: #ffe0e0;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+  
+      .error {
+          color: red;
+          font-size: 1em;
+          margin-top: 10px;
+      }
+  
+      .api-title {
+          font-size: 1.8em;
+          color: #333;
+          margin-bottom: 15px;
+      }
+  
+      pre {
+          background-color: #f5f5f5;
+          border-radius: 5px;
+          padding: 10px;
+          overflow-x: auto;
+          white-space: pre-wrap;
+          word-wrap: break-word;
+      }
+  </style>
+  
