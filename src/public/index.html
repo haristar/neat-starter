@@ -1,131 +1,315 @@
 ---
 layout: text
 ---
+
 <section>
-    <body>
-        <section class="mt-15">
-            {% set apilist = collections.apitag %}
-            
-            {% set apisArray = [] %}
-            
-            {% for api in apilist | reverse %}
-                {% if api.data.api %}
-                    {% set apisArray = apisArray.concat(api.data.api) %}
-                {% endif %}
-                
-                <!-- <article class="my-8">
-                    <h2 class="font-bold text-3xl text-gray-900 mb-2">
-                        {% if api.data.api %}
-                            {{ api.data.api }}
-                        {% else %}
-                            Untitled
-                        {% endif %}
-                    </h2>
-                </article> -->
-            {% endfor %}
-
-            <!-- Display the stored texts from the array -->
-            <div class="mt-8">
-                <h3 class="font-bold text-2xl">Collected APIs:</h3>
-                <ul id="api-list">
-                    {% for api in apisArray %}
-                        <li class="text-gray-700">{{ api }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </section>    
-    </body>
-</section>
-
-<script>
-    // Convert the Nunjucks apisArray to a JavaScript array
-    const apisArray = "{{ apisArray }}";
+    <head>
+      <meta charset="utf-8">
+      <meta content="width=device-width, initial-scale=1.0" name="viewport">
+      <meta name="twitter:title" content="PRAC360 is an easy-to-use appointment booking application that helps doctors and patients connect. With its secure, cloud-based platform, prac360 simplifies the process of scheduling and managing appointments. Get started today and simplify your practice">
+      <meta name ="twitter:description" content="PRAC360 is an easy-to-use appointment booking application that helps doctors and patients connect. With its secure, cloud-based platform, prac360 simplifies the process of scheduling and managing appointments. Get started today and simplify your practice">
     
-    // Check if apisArray is an array
-    console.log('APIs Array:', apisArray);
-    console.log('Type of APIs Array:', typeof apisArray);
+    <meta property="og:description" content="PRAC360 is an easy-to-use appointment booking application that helps doctors and patients connect. With its secure, cloud-based platform, prac360 simplifies the process of scheduling and managing appointments. Get started today and simplify your practice">
+    
+      <title>PRAC360 - is appointment booking application</title>
+      <meta name=”description” content=”PRAC360 is an easy-to-use appointment booking application that helps doctors and patients connect. With its secure, cloud-based platform, prac360 simplifies the process of scheduling and managing appointments. Get started today and simplify your practice”>
+      <meta name=”keywords” content=”PRAC360,PRAC,prac360.com,prac360 ,doctors,patient appointment, hospital ,application,doctor appointment,naveed nazir shah,prac360.com,kashmir” online appointment booking software, prac360 appointment scheduling software, prac360 online booking system, prac360 patient scheduling, prac360 appointment manager, appointment booking app, online appointment booking system, prac360 online booking app, prac360 patient appointment booking, online appointment scheduling software, online appointment booking tool, best appointment booking app, best online,pulmono logist,doctor near me ,doctor close me,kasmir ,zukura,pulomolgist zukura>
+      <link rel="canonical" href="">
+      <!-- Favicons -->
+      <link href="assets/img/favicon.png" rel="icon">
+      <link href="assets/img/favicon.png" rel="apple-touch-icon">
+      
+      <!-- Google Fonts -->
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    
+      <!-- Vendor CSS Files -->
+      <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+      <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+      <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+      <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+      <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+      <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    
+      <!-- Template Main CSS File -->
+      <link href="assets/css/style.css" rel="stylesheet">
+    
+      
+    </head>
+    
+    <body>
+    
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center">
+          <!-- <a href="https://prac360.com/"> -->
+          <img src="assets/img/prac360bookappointment.png" class="img-fluid me-auto " id="toplogo" alt="prac360 book appointment">
+        <!-- </a> -->    
+          </nav> 
+          <!-- .navbar -->
+          <a href="https://play.google.com/store/apps/details?id=com.agamworks.prac360" class="appointment-btn scrollto me-3">Book an Appointment</a>
+          <a href="https://prac360-provider-web.web.app/" class="appointment-btn scrollto me-3"><i class="bi bi-door-open"></i>Login</a>
+      
+          <!-- <i class="bi bi-list mobile-nav-toggle"></i> -->
+        </div>
+      </header>
+      <!-- End Header -->
+      <!-- ======= Hero Section ======= -->
+      <section id="hero" class="d-flex align-items-center">
+        <div class="container">
+          <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Welcome to Prac360</h1>
+          <h2>Prac360 simplifies healthcare appointment scheduling with a <br> user-friendly platform for easy booking and management. <br>Trust us for a professional and efficient experience.</h2>
+       <br>
+          <a class="btn1 btn-google" href="https://play.google.com/store/apps/details?id=com.agamworks.prac360" title="Google Play">Google Play</a>
+        </div>
+      </section>
+      <!-- End Hero -->
+      <main id="main">
+        <!-- ======= Why Us Section ======= -->
+        <section id="why-us" class="why-us">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-4 d-flex align-items-stretch">
+                <div class="content">
+                  <h3>Why Choose prac360?</h3>
+                  <p>
+                    Prac360 is a 360° solution to help you manage your healthcare needs better.
+                  </p>
+                  <div class="text-center">
+                    <!-- <a href="https://prac360.com/" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a> -->
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 d-flex align-items-stretch">
+                <div class="icon-boxes d-flex flex-column justify-content-center">
+                  <div class="row">
+                    <div class="col-xl-4 d-flex align-items-stretch">
+                      <div class="icon-box mt-4 mt-xl-0">
+                        <i class="bx bx-receipt"></i>
+                        <h4>Delightful patient engagement</h4>
+                        <p>Prac360 is a 360° solution striving to deliver a delightful patient engagement experience</p>
+                      </div>
+                    </div>
+                    <div class="col-xl-4 d-flex align-items-stretch">
+                      <div class="icon-box mt-4 mt-xl-0">
+                        <i class="bx bx-cube-alt"></i>
+                        <h4>Improve consult experience</h4>
+                        <p>Prac360 - a 360° solution to improve your consult experience.</p>
+                      </div>
+                    </div>
+                    <div class="col-xl-4 d-flex align-items-stretch">
+                      <div class="icon-box mt-4 mt-xl-0">
+                        <i class="bx bx-images"></i>
+                        <h4>Appointment scheduling</h4>
+                        <p>Prac360 - a 360° appointment scheduling solution</p>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- End .content-->
+              </div>
+            </div>
+    
+          </div>
+        </section>
 
-    const split = apisArray.split(",");
-    console.log('APIs Array:', split[0]);
-    console.log('APIs Array:', split[1]);
-
-    for (let i = 0; i < split.length; i++) {
-        fetch(split[i])
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('manual error');
-                }
-                return response.json(); // Move return statement here
-            })
-            .then(data => {
-                console.log(data);
-                // displayAPIResult("hello", data);
-                displayAPIResult(split[i], data);
-            })
-            .catch(error => {
-                // Display error message if the request fails
-                console.error('Error fetching API:', error);
-                displayAPIError("there", error.message);
-            });
-    }
-
-    // Function to display only the names from the API result on the page
-    function displayAPIResult(apiUrl, data) {
-        const apiList = document.getElementById('api-list');
-
-        // Create a new list item
-        const listItem = document.createElement('li');
-        listItem.className = 'api-result';
-
-        // Create a title for the API result
-        const title = document.createElement('h4');
-        title.textContent = `Data from ${apiUrl}`;
-        title.className = 'api-title';
-
-        // Create a list to display names
-        const nameList = document.createElement('ul');
-
-        // Iterate over the results and add each name to the list
-        data.results.forEach(result => {
-            const nameItem = document.createElement('li');
-            nameItem.textContent = result.name;
-            nameList.appendChild(nameItem);
-        });
-
-        // Append the title and name list to the list item
-        listItem.appendChild(title);
-        listItem.appendChild(nameList);
-
-        // Append the list item to the apiList
-        apiList.appendChild(listItem);
-    }
-
-    // Function to display an error message if the API request fails
-    function displayAPIError(apiUrl, errorMessage) {
-        const apiList = document.getElementById('api-list');
-
-        // Create a new list item for the error
-        const listItem = document.createElement('li');
-        listItem.className = 'api-error';
-
-        // Create a title for the error
-        const title = document.createElement('h4');
-        title.textContent = `Error fetching data from ${apiUrl}`;
-        title.className = 'api-title';
-
-        // Create a paragraph to display the error message
-        const errorText = document.createElement('p');
-        errorText.textContent = `Error: ${errorMessage}`;
-        errorText.className = 'error';
-
-        // Append the title and error message to the list item
-        listItem.appendChild(title);
-        listItem.appendChild(errorText);
-
-        // Append the list item to the apiList
-        apiList.appendChild(listItem);
-    }
-</script>
+        <section>
+            <body>
+                <section class="mt-15">
+                    {% set apilist = collections.apitag %}
+                    
+                    {% set apisArray = [] %}
+                    
+                    {% for api in apilist | reverse %}
+                        {% if api.data.api %}
+                            {% set apisArray = apisArray.concat(api.data.api) %}
+                        {% endif %}
+                        
+                        <!-- <article class="my-8">
+                            <h2 class="font-bold text-3xl text-gray-900 mb-2">
+                                {% if api.data.api %}
+                                    {{ api.data.api }}
+                                {% else %}
+                                    Untitled
+                                {% endif %}
+                            </h2>
+                        </article> -->
+                    {% endfor %}
+        
+                    <!-- Display the stored texts from the array -->
+                    <div class="mt-8">
+                        <h3 class="font-bold text-2xl">Collected APIs:</h3>
+                        <ul id="api-list">
+                            {% for api in apisArray %}
+                                <li class="text-gray-700">{{ api }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </section>    
+            </body>
+        </section>
+        
+        <script>
+            // Convert the Nunjucks apisArray to a JavaScript array
+            const apisArray = "{{ apisArray }}";
+            
+            // Check if apisArray is an array
+            console.log('APIs Array:', apisArray);
+            console.log('Type of APIs Array:', typeof apisArray);
+        
+            const split = apisArray.split(",");
+            console.log('APIs Array:', split[0]);
+            console.log('APIs Array:', split[1]);
+        
+            for (let i = 0; i < split.length; i++) {
+                fetch(split[i])
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('manual error');
+                        }
+                        return response.json(); // Move return statement here
+                    })
+                    .then(data => {
+                        console.log(data);
+                        // displayAPIResult("hello", data);
+                        displayAPIResult(split[i], data);
+                    })
+                    .catch(error => {
+                        // Display error message if the request fails
+                        console.error('Error fetching API:', error);
+                        displayAPIError("there", error.message);
+                    });
+            }
+        
+            // Function to display only the names from the API result on the page
+            function displayAPIResult(apiUrl, data) {
+                const apiList = document.getElementById('api-list');
+        
+                // Create a new list item
+                const listItem = document.createElement('li');
+                listItem.className = 'api-result';
+        
+                // Create a title for the API result
+                const title = document.createElement('h4');
+                title.textContent = `Data from ${apiUrl}`;
+                title.className = 'api-title';
+        
+                // Create a list to display names
+                const nameList = document.createElement('ul');
+        
+                // Iterate over the results and add each name to the list
+                data.results.forEach(result => {
+                    const nameItem = document.createElement('li');
+                    nameItem.textContent = result.name;
+                    nameList.appendChild(nameItem);
+                });
+        
+                // Append the title and name list to the list item
+                listItem.appendChild(title);
+                listItem.appendChild(nameList);
+        
+                // Append the list item to the apiList
+                apiList.appendChild(listItem);
+            }
+        
+            // Function to display an error message if the API request fails
+            function displayAPIError(apiUrl, errorMessage) {
+                const apiList = document.getElementById('api-list');
+        
+                // Create a new list item for the error
+                const listItem = document.createElement('li');
+                listItem.className = 'api-error';
+        
+                // Create a title for the error
+                const title = document.createElement('h4');
+                title.textContent = `Error fetching data from ${apiUrl}`;
+                title.className = 'api-title';
+        
+                // Create a paragraph to display the error message
+                const errorText = document.createElement('p');
+                errorText.textContent = `Error: ${errorMessage}`;
+                errorText.className = 'error';
+        
+                // Append the title and error message to the list item
+                listItem.appendChild(title);
+                listItem.appendChild(errorText);
+        
+                // Append the list item to the apiList
+                apiList.appendChild(listItem);
+            }
+        </script>
+    
+          <hr>
+      </main><!-- End #main -->
+    
+      <!-- ======= Footer ======= -->
+      <footer id="footer">
+    
+        <div class="footer-top">
+          <div class="container">
+            <div class="row">
+    
+              <div class="col-lg-4 col-md-6 footer-contact p-3">
+                <h4>Prac360 - Contact</h4>
+                <p>
+                  Prac360 Technologies Private Limited<br>
+                  <!-- Gousia Mohalla<br> -->
+                  Umar Colony (A), Lalbazar<br>
+                  Srinagar<br>
+                  Jammu & kashmir - 190023 <br><br>
+                  <strong>Phone: </strong>96222 96076<br>
+                  <strong>Email: </strong>support@prac360.com<br>
+                </p>
+              </div>
+    
+              <div class="col-lg-4 col-md-6 footer-links p-3">
+                <h4>Useful Links</h4>
+                <ul>
+                  <!-- <li><i class="bx bx-chevron-right"></i> <a href="#hero">Home</a></li> -->
+                  <li><i class="bx bx-chevron-right"></i> <a href="about_us.html">About us</a></li>
+                  <!-- <li><i class="bx bx-chevron-right"></i> <a href="#contact">Contact us</a></li> -->
+    
+                  <!-- <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li> -->
+                  <li><i class="bx bx-chevron-right"></i> <a href="refund_policy.html">Terms of service - Refund Policy</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="privacy_policy.html">Privacy policy</a></li>
+                </ul>
+              </div>
+    
+            </div>
+          </div>
+        </div>
+    
+        <div class="container py-4">
+    
+          <div class="text-center">
+            <div class="copyright" style="text-align: Center">
+              &copy; Copyright@2023 <strong><span>Prac360 Technologies Private Limited.</span></strong> All Rights Reserved
+            </div>
+            <div class="credits">
+              <!-- All the links in the footer should remain intact. -->
+              <!-- You can delete the links only if you purchased the pro version. -->
+              <!-- Licensing information: https://bootstrapmade.com/license/ -->
+              <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/ -->
+              <!-- Designed by <a href="https://prac60.com/">..</a> -->
+            </div>
+          </div>
+        </div>
+      </footer><!-- End Footer -->
+    
+      <div id="preloader"></div>
+      <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    
+      <!-- Vendor JS Files -->
+      <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+      <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+      <script src="assets/vendor/php-email-form/validate.js"></script>
+    
+      <!-- Template Main JS File -->
+      <script src="assets/js/main.js"></script>
+    
+    </body>
+    </section>
 
 
 <style>
