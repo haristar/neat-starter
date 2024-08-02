@@ -89,7 +89,7 @@
     </div>
 
     <script>
-        const apisArray = JSON.parse('{{ apisArray | jsonify }}');
+        const apisArray = JSON.parse('{{ apisArray }}');
         console.log('APIs Array:', apisArray);
 
         async function fetchAPI(url) {
