@@ -1,3 +1,6 @@
+---
+layout: text
+---
 <section>
 <head>
   <meta charset="utf-8">
@@ -112,9 +115,7 @@
         <h1><center>hello there! prac360</center></h1>
       </article>
     </section>
-
-    <section>
-          <section class="mt-15">
+        <section class="mt-15">
               {% set apilist = collections.apitag %}
               
               {% set apisArray = [] %}
@@ -123,19 +124,8 @@
                   {% if api.data.api %}
                       {% set apisArray = apisArray.concat(api.data.api) %}
                   {% endif %}
-                  
-                  <!-- <article class="my-8">
-                      <h2 class="font-bold text-3xl text-gray-900 mb-2">
-                          {% if api.data.api %}
-                              {{ api.data.api }}
-                          {% else %}
-                              Untitled
-                          {% endif %}
-                      </h2>
-                  </article> -->
               {% endfor %}
   
-              <!-- Display the stored texts from the array -->
               <div class="mt-8">
                   <h3 class="font-bold text-2xl">Collected APIs:</h3>
                   <ul id="api-list">
@@ -144,7 +134,6 @@
                       {% endfor %}
                   </ul>
               </div>
-          </section>    
         </section>
       <hr>
   </main><!-- End #main -->
