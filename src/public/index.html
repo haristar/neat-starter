@@ -112,29 +112,58 @@ layout: text
     </section>
     <section>
       <article>
-        <h1><center>hello there! prac360</center></h1>
+        <h3><center>hello there! prac360</center></h3>
       </article>
     </section>
-        <section class="mt-15">
-              {% set apilist = collections.apitag %}
-              
-              {% set apisArray = [] %}
-              
-              {% for api in apilist | reverse %}
-                  {% if api.data.api %}
-                      {% set apisArray = apisArray.concat(api.data.api) %}
-                  {% endif %}
-              {% endfor %}
-  
-              <div class="mt-8">
-                  <h3 class="font-bold text-2xl">Collected APIs:</h3>
-                  <ul id="api-list">
-                      {% for api in apisArray %}
-                          <li class="text-gray-700">{{ api }}</li>
-                      {% endfor %}
-                  </ul>
-              </div>
-        </section>
+    <section class="mt-15" id="api-container" 
+        data-urls='[
+            {% for api in collections.apitag %}
+                "{{ api.data.api }}"{{ "," if not loop.last }}
+            {% endfor %}
+        ]'>
+        <ul id="doctor_list"></ul>
+    </section>
+    <script>
+        const apiContainer = document.getElementById('api-container');
+        const apiUrls = JSON.parse(apiContainer.getAttribute('data-urls'));
+        for(let i =0; i< apiUrls.length; i++){
+        fetch(apiUrls[i])
+        .then( res => {
+            return res.json()
+        })
+        .then(data => {
+            console.log(data)
+           dataRender(data)
+        }).catch(error => console.log(error))
+    }
+
+    function dataRender(data){
+        const doctorList  = document.getElementById("doctor_list")
+
+        data.forEach(element => {
+            const doctorData = document.createElement('li')
+            doctorData.textContent = element.name
+            doctorList.appendChild(doctorData)
+        });
+    }
+    </script>
+    <style>
+    .mt-15 { margin-top: 15px; }
+    #doctor_list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px; /* Optional: add some space between items */
+    }
+    .doctor {
+    font-size: 1.25rem; /* Adjust font size as needed */
+    margin: 5px; /* Adjust margin as needed */
+    padding: 10px; /* Adjust padding as needed */
+    border: 1px solid #ddd; /* Optional: add a border */
+    border-radius: 5px; /* Optional: round the corners */
+    background-color: #f9f9f9; /* Optional: add a background color */
+    }
+    </style>
       <hr>
   </main><!-- End #main -->
 
