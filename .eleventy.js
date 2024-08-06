@@ -46,6 +46,9 @@ module.exports = function (eleventyConfig) {
 
   // Copy favicon to root of /_site
   eleventyConfig.addPassthroughCopy("./src/favicon.ico");
+  eleventyConfig.addPassthroughCopy("./src/priv");
+  eleventyConfig.addPassthroughCopy("./src/public");
+  eleventyConfig.addPassthroughCopy("./src/demo");
 
   // Minify HTML
   eleventyConfig.addTransform("htmlmin", function (content, outputPath) {
